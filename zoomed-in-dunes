@@ -1,0 +1,69 @@
+import numpy as np
+from matplotlib import pyplot as plt
+from osgeo import ogr
+import pandas as pd
+from osgeo import gdal
+import xarray as xr
+from scipy.io import loadmat
+from scipy.optimize import least_squares
+import scipy.stats as stats
+import cartopy.crs as ccrs
+import geopandas as gpd
+import geopandas as gpd
+import shapely.wkt
+
+shapefile_paths = [
+    '/Users/nbin0104/Downloads/NewTracesMarch2023 2/ShangriLa.shp',
+    '/Users/nbin0104/Downloads/NewTracesMarch2023 2/Senkyo.shp',
+    '/Users/nbin0104/Downloads/NewTracesMarch2023 2/Fensal.shp',
+    '/Users/nbin0104/Downloads/NewTracesMarch2023 2/Belet.shp'
+]
+
+#belet
+i = 3
+for j in range(len(dfpolys[i])):
+    plt.plot(*dfpolys[i][j].xy,color= 'r',lw=lw)
+plt.axis('square')
+plt.xlim(-0.32e+7,-0.33e+7)
+plt.ylim(-0.3e+6,-0.35e+6)
+
+plt.title('Belet')
+plt.xlabel('Longitude')
+plt.ylabel('Latitude')
+
+#senkyo
+i = 1
+for j in range(len(dfpolys[i])):
+    plt.plot(*dfpolys[i][j].xy,color='darkorange',lw=lw)
+plt.axis('square')
+plt.xlim(58,62)
+plt.ylim(-11,-13)
+
+plt.title('Senkyo')
+plt.xlabel('Longitude')
+plt.ylabel('Latitude')
+
+
+i = 2 #fensal
+for j in range(len(dfpolys[i])):
+    plt.plot(*dfpolys[i][j].xy,color='g',lw=lw)
+plt.axis('square')
+plt.xlim(6.5e+6,6.65e+6)
+plt.ylim(0.02e+7,0.028e+7)
+
+plt.title('Fensal')
+plt.xlabel('Longitude')
+plt.ylabel('Latitude')
+
+
+i = 0 # shangrila
+for j in range(len(dfpolys[i])):
+    plt.plot(*dfpolys[i][j].xy, color='b', lw=lw)
+
+plt.axis('square')
+plt.xlim(-1.715e+7, -1.68e+7)
+plt.ylim(-0.08 + 7, -0.015e+7)
+
+plt.title('Shangri La')
+plt.xlabel('Longitude')
+plt.ylabel('Latitude')
