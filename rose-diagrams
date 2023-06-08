@@ -130,7 +130,7 @@ for file_path in file_paths:
     # Show the plot
     plt.show()
     
-    file_paths = ['/Users/nbin0104/Downloads/NewTracesMarch2023 2/BeletDunes (1).xls']
+file_paths = ['/Users/nbin0104/Downloads/NewTracesMarch2023 2/BeletDunes (1).xls']
 
 # Define the direction labels
 direction_labels = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W',  'NW']
@@ -140,15 +140,16 @@ for file_path in file_paths:
     data = pd.read_excel(file_path)
     
     # Adjust azimuth values greater than 180 degrees
-data['Azimuth'][data['Azimuth'] > 180] -= 180
+    data['Azimuth'][data['Azimuth'] > 180] -= 180
     
     # Convert angles to radians
-angles_rad = np.radians(data['Azimuth'])
+    angles_rad = np.radians(data['Azimuth'])
     
-
-fig, ax = plt.subplots(subplot_kw={'projection': 'polar'})
+    # Create a polar plot
+    fig, ax = plt.subplots(subplot_kw={'projection': 'polar'})
     
-ax.hist(angles_rad, bins=72, color='skyblue', edgecolor='black')
+    # Plot the rose diagram
+    ax.hist(angles_rad, bins=72, color='skyblue', edgecolor='black')
     
     # Set the direction labels at the corresponding angles
     ax.set_xticks(np.linspace(0, 2*np.pi, len(direction_labels), endpoint=False))
