@@ -1,0 +1,66 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+
+sl = pd.read_excel('/Users/nbin0104/Downloads/NewTracesMarch2023 2/ShangriLaDunes.xls')
+sk = pd.read_excel('/Users/nbin0104/Downloads/NewTracesMarch2023 2/SenkyoDunes (1).xls')
+fs = pd.read_excel('/Users/nbin0104/Downloads/NewTracesMarch2023 2/FensalDunes (1).xls')
+bl = pd.read_excel('/Users/nbin0104/Downloads/NewTracesMarch2023 2/BeletDunes (1).xls')
+
+
+grid_size = 5  
+
+
+x_min, x_max = -180, 180
+y_min, y_max = -45, 45
+num_x_cells = int((x_max - x_min) / grid_size) + 1
+num_y_cells = int((y_max - y_min) / grid_size) + 1
+
+
+average_azimuth = np.zeros((num_y_cells, num_x_cells))
+
+
+datasets = [sl, sk, fs, bl]
+for data in datasets:
+    x = data['Lon']
+    y = data['Lat']
+    azimuth = np.radians(data['Azimuth'])  # Convert azimuth to radians
+
+    # Computing the indices of the grid cell for each data point
+    grid_x = ((x - x_min) / grid_size).astype(int)
+    grid_y = ((y - y_min) / grid_size).astype(int)
+
+    # Computing the average azimuth for each grid cell
+    for i in range(num_y_cells):
+        for j in range(num_x_cells):
+            indices = np.where((grid_x == j) & (grid_y == i))[0]
+            if len(indices) > 0:
+                avg_azimuth = np.mean(azimuth[indices])
+                # Exclude grid cells with average azimuth of 0
+                if avg_azimuth != 0:
+                    average_azimuth[i, j] = avg_azimuth
+
+# Plot the quiver plot with average azimuth as arrows
+plt.figure(figsize=(12, 3))
+for i in range(num_y_cells):
+    for j in range(num_x_cells):
+        angle = average_azimuth[i, j]
+        if angle != 0:
+            dx = np.cos(angle - np.pi/2)  
+            dy = np.sin(angle - np.pi/2)  
+            x = j * grid_size + x_min + grid_size / 2
+            y = i * grid_size + y_min + grid_size / 2
+            plt.arrow(x, y, dx, dy, color='k', alpha=0.8, head_width=2, head_length=4)
+
+plt.axis('square')
+plt.xlim(x_min, x_max)
+plt.ylim(y_min, y_max)
+plt.xlabel('longitude')
+plt.ylabel('latitude')
+plt.legend(['Average Azimuth'], ncol=1)
+
+# Add a title
+plt.title('Average Orientation of Titan Dunes')
+
+plt.show()
