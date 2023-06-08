@@ -26,26 +26,26 @@ file_paths = [
     '/Users/nbin0104/Downloads/NewTracesMarch2023 2/ShangriLaDunes.xls',
 ]
 
-# Define the direction labels
+
 direction_labels = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W',  'NW']
 
 for file_path in file_paths:
     # Load the data from the Excel file using pandas
     data = pd.read_excel(file_path)
     
-    # Adjust azimuth values greater than 180 degrees
+ 
     data['Azimuth'][data['Azimuth'] > 180] -= 180
     
     # Convert angles to radians
     angles_rad = np.radians(data['Azimuth'])
     
-    # Create a polar plot
+
     fig, ax = plt.subplots(subplot_kw={'projection': 'polar'})
     
-    # Plot the rose diagram
+
     ax.hist(angles_rad, bins=72, color='skyblue', edgecolor='black')
     
-    # Set the direction labels at the corresponding angles
+
     ax.set_xticks(np.linspace(0, 2*np.pi, len(direction_labels), endpoint=False))
     ax.set_xticklabels(direction_labels)
     
@@ -53,35 +53,32 @@ for file_path in file_paths:
     ax.set_theta_zero_location('N')
     ax.set_theta_direction(-1)
     
-    # Set the title
+
     ax.set_title('Rose Diagram of Shangri La')
     
-    # Show the plot
     plt.show()
 
 
 file_paths = [ '/Users/nbin0104/Downloads/NewTracesMarch2023 2/SenkyoDunes (1).xls']
 
-# Define the direction labels
+
 direction_labels = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W',  'NW']
 
 for file_path in file_paths:
     # Load the data from the Excel file using pandas
     data = pd.read_excel(file_path)
     
-    # Adjust azimuth values greater than 180 degrees
+
     data['Azimuth'][data['Azimuth'] > 180] -= 180
     
     # Convert angles to radians
     angles_rad = np.radians(data['Azimuth'])
     
-    # Create a polar plot
     fig, ax = plt.subplots(subplot_kw={'projection': 'polar'})
     
-    # Plot the rose diagram
     ax.hist(angles_rad, bins=72, color='skyblue', edgecolor='black')
     
-    # Set the direction labels at the corresponding angles
+
     ax.set_xticks(np.linspace(0, 2*np.pi, len(direction_labels), endpoint=False))
     ax.set_xticklabels(direction_labels)
     
@@ -89,34 +86,33 @@ for file_path in file_paths:
     ax.set_theta_zero_location('N')
     ax.set_theta_direction(-1)
     
-    # Set the title
+
     ax.set_title('Rose Diagram of Senkyo')
     
-    # Show the plot
+
     plt.show()
     
-    file_paths = ['/Users/nbin0104/Downloads/NewTracesMarch2023 2/FensalDunes (1).xls']
+file_paths = ['/Users/nbin0104/Downloads/NewTracesMarch2023 2/FensalDunes (1).xls']
 
-# Define the direction labels
+
 direction_labels = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W',  'NW']
 
 for file_path in file_paths:
     # Load the data from the Excel file using pandas
     data = pd.read_excel(file_path)
     
-    # Adjust azimuth values greater than 180 degrees
+
     data['Azimuth'][data['Azimuth'] > 180] -= 180
     
     # Convert angles to radians
     angles_rad = np.radians(data['Azimuth'])
-    
-    # Create a polar plot
+
     fig, ax = plt.subplots(subplot_kw={'projection': 'polar'})
     
-    # Plot the rose diagram
+ 
     ax.hist(angles_rad, bins=72, color='skyblue', edgecolor='black')
     
-    # Set the direction labels at the corresponding angles
+
     ax.set_xticks(np.linspace(0, 2*np.pi, len(direction_labels), endpoint=False))
     ax.set_xticklabels(direction_labels)
     
@@ -124,34 +120,33 @@ for file_path in file_paths:
     ax.set_theta_zero_location('N')
     ax.set_theta_direction(-1)
     
-    # Set the title
+
     ax.set_title('Rose Diagram of Fensal')
     
-    # Show the plot
     plt.show()
     
 file_paths = ['/Users/nbin0104/Downloads/NewTracesMarch2023 2/BeletDunes (1).xls']
 
-# Define the direction labels
+
 direction_labels = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W',  'NW']
 
 for file_path in file_paths:
     # Load the data from the Excel file using pandas
     data = pd.read_excel(file_path)
     
-    # Adjust azimuth values greater than 180 degrees
+
     data['Azimuth'][data['Azimuth'] > 180] -= 180
     
-    # Convert angles to radians
+ 
     angles_rad = np.radians(data['Azimuth'])
     
-    # Create a polar plot
+
     fig, ax = plt.subplots(subplot_kw={'projection': 'polar'})
     
-    # Plot the rose diagram
+
     ax.hist(angles_rad, bins=72, color='skyblue', edgecolor='black')
     
-    # Set the direction labels at the corresponding angles
+
     ax.set_xticks(np.linspace(0, 2*np.pi, len(direction_labels), endpoint=False))
     ax.set_xticklabels(direction_labels)
     
@@ -159,8 +154,7 @@ for file_path in file_paths:
     ax.set_theta_zero_location('N')
     ax.set_theta_direction(-1)
     
-    # Set the title
+   
     ax.set_title('Rose Diagram of Belet')
     
-    # Show the plot
     plt.show()
