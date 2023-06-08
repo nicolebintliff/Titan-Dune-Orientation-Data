@@ -1,0 +1,50 @@
+import numpy as np
+from matplotlib import pyplot as plt
+from osgeo import ogr
+import pandas as pd
+from osgeo import gdal
+import xarray as xr
+from scipy.io import loadmat
+from scipy.optimize import least_squares
+import scipy.stats as stats
+import cartopy.crs as ccrs
+import geopandas as gpd
+import geopandas as gpd
+import shapely.wkt
+
+
+sl = pd.read_excel('/Users/nbin0104/Downloads/NewTracesMarch2023 2/ShangriLaDunes.xls')
+sk = pd.read_excel('/Users/nbin0104/Downloads/NewTracesMarch2023 2/SenkyoDunes (1).xls')
+fs = pd.read_excel('/Users/nbin0104/Downloads/NewTracesMarch2023 2/FensalDunes (1).xls')
+bl = pd.read_excel('/Users/nbin0104/Downloads/NewTracesMarch2023 2/BeletDunes (1).xls')
+
+
+sl['Azimuth'][sl['Azimuth']>180] -= 180
+sk['Azimuth'][sk['Azimuth']>180] -= 180
+fs['Azimuth'][fs['Azimuth']>180] -= 180
+bl['Azimuth'][bl['Azimuth']>180] -= 180
+
+
+plt.figure(figsize=(12, 3))
+
+np.cos(sl['Azimuth']) 
+
+
+
+plt.quiver(sl['Lon'], sl['Lat'], np.cos(sl['Azimuth']) , np.sin(sl['Azimuth']), color='b', angles='xy', scale_units='xy', scale=1)
+plt.quiver(sk['Lon'], sk['Lat'], np.cos(sk['Azimuth']) , np.sin(sk['Azimuth']), color='orange', angles='xy', scale_units='xy', scale=1)
+plt.quiver(fs['Lon'], fs['Lat'], np.cos(fs['Azimuth']) , np.sin(fs['Azimuth']), color='g', angles='xy', scale_units='xy', scale=1)
+plt.quiver(bl['Lon'], bl['Lat'], np.cos(bl['Azimuth']) , np.sin(bl['Azimuth']), color='r', angles='xy', scale_units='xy', scale=1)
+
+
+
+
+plt.axis('square')
+plt.xlim(-180, 180)
+plt.ylim(-45, 45)
+plt.xlabel('longitude')
+plt.ylabel('latitude')
+plt.title('Map of Titan Dunes')
+plt.legend(['Shangri La', 'Senkyo', 'Fensal', 'Belet'], ncol=4)
+
+plt.show()
