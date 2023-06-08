@@ -37,11 +37,11 @@ for data in datasets:
             indices = np.where((grid_x == j) & (grid_y == i))[0]
             if len(indices) > 0:
                 avg_azimuth = np.mean(azimuth[indices])
-                # Exclude grid cells with average azimuth of 0
+             
                 if avg_azimuth != 0:
                     average_azimuth[i, j] = avg_azimuth
 
-# Plot the quiver plot with average azimuth as arrows
+# Plotting the quiver plot with average azimuth as arrows
 plt.figure(figsize=(12, 3))
 for i in range(num_y_cells):
     for j in range(num_x_cells):
@@ -60,7 +60,7 @@ plt.xlabel('longitude')
 plt.ylabel('latitude')
 plt.legend(['Average Azimuth'], ncol=1)
 
-# Add a title
+
 plt.title('Average Orientation of Titan Dunes')
 
 plt.show()
